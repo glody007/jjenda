@@ -1,21 +1,25 @@
 <template>
-  <div class="home">
-    <HelloWorld msg="Welcome to Your Vue.js + Flask App"/>
-  </div>
+  <v-container>
+    <v-row justify="center" class="text-center">
+      <h3 class="headline font-weight-bold">
+        Vendez et achetez où vous êtes avec Jjenda
+      </h3>
+    </v-row>
+    <v-row justify="center">
+      <ArticlesEnVente/>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import ArticlesEnVente from '../components/ArticlesEnVente'
+import Article from '../components/Article'
 
 export default {
-  name: 'home',
+  name: 'Home',
+
   components: {
-    HelloWorld
+    ArticlesEnVente, Article
   }
 }
 </script>
-
-<style lang="scss">
-
-</style>
