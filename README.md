@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/gtalarico/flask-vuejs-template.svg?branch=master)](https://travis-ci.org/gtalarico/flask-vuejs-template)
 [![codecov](https://codecov.io/gh/gtalarico/flask-vuejs-template/branch/master/graph/badge.svg)](https://codecov.io/gh/gtalarico/flask-vuejs-template)
 
-_Flask + Vue.js Web Application Template_
+_JJENDA FROM Flask + Vue.js Web Application Template_
 
 ![Vue Logo](/docs/vue-logo.png "Vue Logo") ![Flask Logo](/docs/flask-logo.png "Flask Logo")
 
@@ -32,7 +32,7 @@ If this setup is not what you are looking for, here are some similar projects:
 
 This template was updated to use a flatter folder structure and use yarn instead of npm.
 You can now run `yarn serve` as well as other yarn commands from the template root directory.
-The old template will be kept in the [npm-template branch](https://github.com/gtalarico/flask-vuejs-template/tree/npm-template) but will not be maintained. 
+The old template will be kept in the [npm-template branch](https://github.com/gtalarico/flask-vuejs-template/tree/npm-template) but will not be maintained.
 
 #### Django
 

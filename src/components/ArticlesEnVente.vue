@@ -15,6 +15,7 @@
 
 <script>
 import Article from '../components/Article'
+import $backend from '../backend'
 
 export default {
   name: 'ArticlesEnVente',
@@ -22,45 +23,25 @@ export default {
   components: {
     Article
   },
+
   data: () => ({
-    articles: [
-      {
-        prix: '100$',
-        categorie: 'Phone',
-        description: 'Iphone x 128 Gb',
-        url_photo: 'https://ik.imagekit.io/djenda/Djenda_M8A0w1OWcA',
-        url_thumbnail_photo: 'https://ik.imagekit.io/djenda/tr:n-media_library_thumbnail/Djenda_M8A0w1OWcA',
-        created_at: '21/09/2020',
-        location: [10, 45]
-      },
-      {
-        prix: '65$',
-        categorie: 'Phone',
-        description: 'Iphone x 128 Gb',
-        url_photo: 'https://ik.imagekit.io/djenda/Djenda_M8A0w1OWcA',
-        url_thumbnail_photo: 'https://ik.imagekit.io/djenda/tr:n-media_library_thumbnail/Djenda_M8A0w1OWcA',
-        created_at: '21/09/2020',
-        location: [10, 45]
-      },
-      {
-        prix: '80$',
-        categorie: 'Phone',
-        description: 'Iphone x 128 Gb',
-        url_photo: 'https://ik.imagekit.io/djenda/Djenda_M8A0w1OWcA',
-        url_thumbnail_photo: 'https://ik.imagekit.io/djenda/tr:n-media_library_thumbnail/Djenda_M8A0w1OWcA',
-        created_at: '21/09/2020',
-        location: [10, 45]
-      },
-      {
-        prix: '200$',
-        categorie: 'Phone',
-        description: 'Iphone x 128 Gb',
-        url_photo: 'https://ik.imagekit.io/djenda/Djenda_M8A0w1OWcA',
-        url_thumbnail_photo: 'https://ik.imagekit.io/djenda/tr:n-media_library_thumbnail/Djenda_M8A0w1OWcA',
-        created_at: '21/09/2020',
-        location: [10, 45]
-      }
-    ]
-  })
+    articles: [],
+    error: ''
+  }),
+
+  mounted () {
+    this.fetchArticles()
+  },
+
+  methods: {
+    fetchArticles () {
+      $backend.fetchArticles()
+        .then(responseData => {
+          this.articles = responseData
+        }).catch(error => {
+          this.error = error
+        })
+    }
+  }
 }
 </script>
