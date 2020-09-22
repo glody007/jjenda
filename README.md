@@ -1,9 +1,9 @@
-# Flask-VueJs-Template 🌶️✌
+# Jjenda
 
 [![Build Status](https://travis-ci.org/gtalarico/flask-vuejs-template.svg?branch=master)](https://travis-ci.org/gtalarico/flask-vuejs-template)
 [![codecov](https://codecov.io/gh/gtalarico/flask-vuejs-template/branch/master/graph/badge.svg)](https://codecov.io/gh/gtalarico/flask-vuejs-template)
 
-_JJENDA FROM Flask + Vue.js Web Application Template_
+_JJENDA from Flask + Vue.js Web Application Template_
 
 ![Vue Logo](/docs/vue-logo.png "Vue Logo") ![Flask Logo](/docs/flask-logo.png "Flask Logo")
 
@@ -160,8 +160,8 @@ The python buildpack will detect the `Pipfile` and install all the python depend
 Here are the commands we need to run to get things setup on the Heroku side:
 
 	```
-	$ heroku apps:create flask-vuejs-template-demo
-	$ heroku git:remote --app flask-vuejs-template-demo
+	$ heroku apps:create jjenda
+	$ heroku git:remote --app jjenda
 	$ heroku buildpacks:add --index 1 heroku/nodejs
 	$ heroku buildpacks:add --index 2 heroku/python
 	$ heroku config:set FLASK_ENV=production
