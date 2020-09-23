@@ -7,7 +7,7 @@
       clipped
     >
       <v-list dense>
-        <v-list-item link>
+        <v-list-item link to="/">
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
@@ -15,7 +15,7 @@
             <v-list-item-title>Acceuil</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link>
+        <v-list-item link to="/about">
           <v-list-item-action>
             <v-icon>mdi-information</v-icon>
           </v-list-item-action>
@@ -40,7 +40,7 @@
         class="fill-height"
         fluid
       >
-        <v-row>
+        <v-row align="end" justify="center">
           <router-view/>
         </v-row>
       </v-container>

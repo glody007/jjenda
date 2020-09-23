@@ -4,25 +4,10 @@
     max-width="400"
     outlined
     tile
+    hover
+    :to="linkDetails"
   >
-    <v-row align="center" justify="center">
-      <v-img
-        class="white--text align-end grey lighten-2"
-        :aspect-ratio="1"
-        :src="article.url_photo"
-        :lazy-src="article.url_thumbnail_photo"
-      >
-        <template v-slot:placeholder>
-          <v-row
-            class="fill-height ma-0"
-            align="center"
-            justify="center"
-          >
-            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-          </v-row>
-        </template>
-      </v-img>
-  ``</v-row>
+    <ArticleImage :article="article" :height="200"/>
 
     <v-card-title class="ma-0">{{article.categorie}}</v-card-title>
 
@@ -31,32 +16,39 @@
 
       <div>{{article.created_at}}</div>
 
-      <div>{{article.prix}}</div>
+      <v-badge
+        class="mt-5"
+        color="black"
+        inline
+        :content="prix"
+      >
+      </v-badge>
     </v-card-text>
 
-    <v-card-actions>
-  <v-btn
-    color="#c2185b"
-    text
-  >
-    APPEL
-  </v-btn>
-
-  <v-btn
-    color="#c2185b"
-    text
-  >
-    MESSSAGE
-  </v-btn>
-</v-card-actions>
+    <VendeurContact :article="article"/>
   </v-card>
 </template>
 
 <script>
+import ArticleImage from '../components/ArticleImage'
+import VendeurContact from '../components/VendeurContact'
 
 export default {
   name: 'Article',
 
-  props: ['article']
+  components: {
+    ArticleImage, VendeurContact
+  },
+
+  props: ['article'],
+
+  computed: {
+    linkDetails () {
+      return '/article/' + this.article._id.$oid
+    },
+    prix () {
+      return `${this.article.prix}$`
+    }
+  }
 }
 </script>

@@ -308,6 +308,15 @@ def add_user_produit():
 def all_produits():
     return Produit.objects().to_json()
 
+@api_v1.route('/produits/<id>', methods=['GET'])
+@api_legacy.route('/produits/<id>', methods=['GET'])
+def get_produit(id):
+    print(id)
+    produit = Produit.objects(id=id).first()
+    if produit == None:
+        abort(404)
+    return produit.to_json()
+
 @api_v1.route('/produits/<id>', methods=['DELETE'])
 @api_legacy.route('/produits/<id>', methods=['DELETE'])
 def delete_produit(id):

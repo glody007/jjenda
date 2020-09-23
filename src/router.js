@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import Api from './views/Api.vue'
+import About from './views/About.vue'
+import ArticleDetails from './views/ArticleDetails.vue'
 
 Vue.use(Router)
 
@@ -13,9 +14,14 @@ export default new Router({
       component: Home
     },
     {
-      path: '/api',
-      name: 'api',
-      component: Api
+      path: '/about',
+      name: 'about',
+      component: About
+    },
+    {
+      path: '/article/:id',
+      name: 'article',
+      component: ArticleDetails
     }
   ]
 })

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row justify="center" class="text-center">
+    <v-row class="text-center" justify="center">
       <h3 class="headline font-weight-bold">
         Vendez et achetez où vous êtes avec Jjenda
       </h3>

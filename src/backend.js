@@ -1,16 +1,16 @@
 import axios from 'axios'
 
 let $axios = axios.create({
-  baseURL: 'https://djendardc.herokuapp.com/',
+  baseURL: 'apiv1/',
   timeout: 5000,
   headers: { 'Content-Type': 'application/json' }
 })
 
-// Request Interceptor
+/* Request Interceptor
 $axios.interceptors.request.use(function (config) {
   config.headers['Authorization'] = 'Fake Token'
   return config
-})
+}) */
 
 // Response Interceptor to handle and log errors
 $axios.interceptors.response.use(function (response) {
@@ -25,6 +25,10 @@ export default {
 
   fetchArticles () {
     return $axios.get(`produits`)
+      .then(response => response.data)
+  },
+  fetchArticle (id) {
+    return $axios.get(`produits/${id}`)
       .then(response => response.data)
   }
 }

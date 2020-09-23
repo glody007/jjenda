@@ -38,10 +38,12 @@ export default {
       $backend.fetchArticles()
         .then(responseData => {
           this.articles = responseData
-        }).catch(error => {
+        })
+        .catch(error => {
           this.error = error
         })
     }
   }
+
 }
 </script>
