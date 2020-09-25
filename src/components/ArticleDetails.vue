@@ -2,9 +2,7 @@
   <v-container fill-height fluid>
     <v-row justify="center">
       <v-col cols="12" sm="6">
-        <router-link to="/about">
           <ArticleImage :article="article" :aspectRatio="2/3"/>
-        </router-link>
       </v-col>
 
       <v-col cols="12" sm="4">
@@ -23,7 +21,7 @@
 
             <div>{{article.description}}</div>
 
-            <div>{{article.created_at}}</div>
+            <div>{{elapsedTime}}</div>
 
             <v-badge
               class="mt-5"
@@ -44,7 +42,7 @@
 <script>
 import ArticleImage from '../components/ArticleImage'
 import VendeurContact from '../components/VendeurContact'
-import $backend from '../backend'
+import moment from 'moment'
 
 export default {
   name: 'Article',
@@ -54,33 +52,18 @@ export default {
   },
 
   data: () => ({
-    article: { prix: '20',
-      categorie: 'Habille',
-      description: 'polo rouge',
-      created_at: '20/04/1994',
-      url_photo: 'https://ik.imagekit.io/djenda/09-17-20_03-33-59_TUJ-4GDBm.jpg' },
-    error: ''
+    format:"yyyy-MM-dd HH:mm:ss.SSS",
   }),
 
-  mounted () {
-    this.fetchArticle()
-  },
-
-  methods: {
-    fetchArticle () {
-      $backend.fetchArticle(this.$route.params.id)
-        .then(responseData => {
-          this.article = responseData
-        })
-        .catch(error => {
-          this.error = error
-        })
-    }
-  },
+  props: ['article'],
 
   computed: {
     prix () {
       return `${this.article.prix}$`
+    },
+    elapsedTime() {
+      moment.locale('fr')
+      return moment(this.article.created_at, this.format).fromNow()
     }
   }
 }

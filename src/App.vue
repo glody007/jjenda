@@ -41,7 +41,7 @@
         fluid
       >
         <v-row align="end" justify="center">
-          <router-view/>
+          <router-view :key="$route.fullPath"/>
         </v-row>
       </v-container>
     </v-main>

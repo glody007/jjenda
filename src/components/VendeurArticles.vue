@@ -11,7 +11,7 @@ import ListeArticles from '../components/ListeArticles'
 import $backend from '../backend'
 
 export default {
-  name: 'ArticlesEnVente',
+  name: 'VendeurArticles',
 
   components: {
     ListeArticles
@@ -22,13 +22,15 @@ export default {
     error: ''
   }),
 
+  props: ['vendeurId'],
+
   mounted () {
     this.fetchArticles()
   },
 
   methods: {
     fetchArticles () {
-      $backend.fetchArticles()
+      $backend.fetchVendeurArticles(this.vendeurId)
         .then(responseData => {
           this.articles = responseData
         })

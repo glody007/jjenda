@@ -14,7 +14,7 @@
     <v-card-text class="text--primary">
       <div>{{article.description}}</div>
 
-      <div>{{article.created_at}}</div>
+      <div>{{elapsedTime}}</div>
 
       <v-badge
         class="mt-5"
@@ -25,13 +25,13 @@
       </v-badge>
     </v-card-text>
 
-    <VendeurContact :article="article"/>
   </v-card>
 </template>
 
 <script>
 import ArticleImage from '../components/ArticleImage'
 import VendeurContact from '../components/VendeurContact'
+import moment from 'moment'
 
 export default {
   name: 'Article',
@@ -39,6 +39,10 @@ export default {
   components: {
     ArticleImage, VendeurContact
   },
+
+  data: () => ({
+    format: 'yyyy-MM-dd HH:mm:ss.SSS'
+  }),
 
   props: ['article'],
 
@@ -48,6 +52,10 @@ export default {
     },
     prix () {
       return `${this.article.prix}$`
+    },
+    elapsedTime () {
+      moment.locale('fr')
+      return moment(this.article.created_at, this.format).fromNow()
     }
   }
 }

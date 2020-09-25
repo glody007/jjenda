@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 let $axios = axios.create({
-  baseURL: 'apiv1/',
+  baseURL: '/apiv1/',
   timeout: 5000,
   headers: { 'Content-Type': 'application/json' }
 })
@@ -29,6 +29,14 @@ export default {
   },
   fetchArticle (id) {
     return $axios.get(`produits/${id}`)
+      .then(response => response.data)
+  },
+  fetchVendeurArticles (id) {
+    return $axios.get(`users/${id}/produits`)
+      .then(response => response.data)
+  },
+  fetchVendeur (id) {
+    return $axios.get(`users/${id}`)
       .then(response => response.data)
   }
 }

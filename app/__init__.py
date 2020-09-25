@@ -26,10 +26,11 @@ login_manager.init_app(app)
 client = WebApplicationClient(app.config['GOOGLE_CLIENT_ID'])
 
 # enable CORS
-#CORS(app, resources={r'/*': {'origins': '*'}})
+CORS(app, resources={r'/*': {'origins': '*'}})
 
-@app.route('/')
-def index_client():
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
     dist_dir = current_app.config['DIST_DIR']
     entry = os.path.join(dist_dir, 'index.html')
     return send_file(entry)
