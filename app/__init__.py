@@ -29,6 +29,11 @@ client = WebApplicationClient(app.config['GOOGLE_CLIENT_ID'])
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
 
+@app.before_request
+def before_request():
+    session.permanent = True
+    current_app.permanent_session_lifetime = current_app.config['REMEMBER_COOKIE_DURATION']
+
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):

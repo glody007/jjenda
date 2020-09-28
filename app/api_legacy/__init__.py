@@ -59,11 +59,6 @@ def user():
 def get_google_provider_cfg():
     return requests.get(current_app.config['GOOGLE_DISCOVERY_URL']).json()
 
-@api_v1.before_request
-@api_legacy.before_request
-def before_request():
-    session.permanent = True
-    current_app.permanent_session_lifetime = current_app.config['REMEMBER_COOKIE_DURATION']
 
 @api_v1.route("/login")
 @api_legacy.route("/login")
