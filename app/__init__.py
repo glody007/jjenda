@@ -30,8 +30,11 @@ client = WebApplicationClient(app.config['GOOGLE_CLIENT_ID'])
 CORS(app, resources={r'/*': {'origins': '*'}})
 
 @app.before_request
+@api_v1.before_request
+@api_legacy.before_request
 def before_request():
     session.permanent = True
+    session.modified = True
     current_app.permanent_session_lifetime = current_app.config['REMEMBER_COOKIE_DURATION']
 
 @app.route('/', defaults={'path': ''})

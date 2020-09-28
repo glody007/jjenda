@@ -28,8 +28,8 @@ class Config(object):
     IMAGEKIT_PRIVATE_KEY = os.getenv("IMAGEKIT_PRIVATE_KEY")
     IMAGEKIT_PUBLIC_KEY = os.getenv("IMAGEKIT_PUBLIC_KEY")
     IMAGEKIT_URL_ENDPOINT = os.getenv("IMAGEKIT_URL_ENDPOINT")
-    TWILIO_ACCOUNT_SID = os.getenv("ACaf45bded086aa92eaeb776bb4aba5db5")
-    TWILIO_AUTH_TOKEN = os.getenv("51897a72212c9e59a0b7ae8d33eca325")
+    TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
+    TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 
     APP_DIR = os.path.dirname(__file__)
     ROOT_DIR = os.path.dirname(APP_DIR)
