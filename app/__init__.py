@@ -8,6 +8,7 @@ from .api import api_bp
 from .client import client_bp
 from .api_legacy import api_legacy
 from .api_legacy import api_v1
+from .model import User
 
 app = Flask(__name__, static_folder='../dist/static')
 app.register_blueprint(api_bp)
