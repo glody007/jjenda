@@ -21,9 +21,16 @@ class CustomDateTimeField(DateTimeField):
 
 
 class PlanType:
-    GRATUIT = {"NOM" : "GRATUIT", "NBR_ARTICLES" : 4}
-    STANDARD = {"NOM" : "STANDARD", "NBR_ARTICLES" : 30}
-    GOLD = {"NOM" : "GOLD", "NBR_ARTICLES" : 100}
+    GRATUIT = {"NOM" : "GRATUIT", "NBR_ARTICLES" : 4,
+               "PRICE" : "0$", "ADVANTAGE" : "Gratuit<br/> 0$"}
+    STANDARD = {"NOM" : "STANDARD", "NBR_ARTICLES" : 30,
+                "PRICE" : "5$", "ADVANTAGE" : "Standard<br/> 5$"}
+    GOLD = {"NOM" : "GOLD", "NBR_ARTICLES" : 100,
+            "PRICE" : "10$", "ADVANTAGE" : "Gold<br/> 10$"}
+
+    @staticmethod
+    def all():
+        return [PlanType.GRATUIT, PlanType.STANDARD, PlanType.GOLD]
 
 class Plan(Document):
     nbr_articles_restant = IntField(required=True, default=PlanType.GRATUIT["NBR_ARTICLES"])

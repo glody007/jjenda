@@ -52,7 +52,7 @@ export default {
   },
 
   data: () => ({
-    format:"yyyy-MM-dd HH:mm:ss.SSS",
+    format: 'yyyy-MM-dd HH:mm:ss.SSS'
   }),
 
   props: ['article'],
@@ -61,7 +61,8 @@ export default {
     prix () {
       return `${this.article.prix}$`
     },
-    elapsedTime() {
+
+    elapsedTime () {
       moment.locale('fr')
       return moment(this.article.created_at, this.format).fromNow()
     }

@@ -33,12 +33,12 @@ from imagekitio import ImageKit
 from google.oauth2 import id_token
 from google.auth.transport import requests
 
-from ..model import User, Produit, UserType
+from ..model import User, Produit, UserType, PlanType
 from .. import client
 
 
 api_legacy = Blueprint('api_legacy', __name__, url_prefix=(""))
-api_v1 = Blueprint('api_v1', __name__, url_prefix=("/apiv1"))
+api_v1 = Blueprint('api_v1', __name__, url_prefix=("/api/v1"))
 
 @api_v1.errorhandler(404)
 @api_legacy.errorhandler(404)
@@ -242,6 +242,10 @@ def all_users():
 @api_legacy.route('/users/posts_restants', methods=['GET'])
 def posts_restants():
     return jsonify({'posts_restants' : current_user.nbr_articles_restant()})
+
+@api_v1.route('/plans')
+def plans():
+    return jsonify(PlanType.all())
 
 @api_v1.route('/users/<id>', methods=['GET'])
 @api_legacy.route('/users/<id>', methods=['GET'])
