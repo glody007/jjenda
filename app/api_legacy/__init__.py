@@ -307,6 +307,15 @@ def add_user_produit():
 def all_produits():
     return Produit.objects().to_json()
 
+@api_v1.route('/best_match_produits', methods=['GET'])
+def best_match_produits():
+    longitude = request.args.get('longitude', None)
+    latitude = request.args.get('latitude', None)
+    if(longitude == None or latitude == None):
+        return Produit.order_by_created_desc().to_json()
+    distanceInKm = 100
+    return Produit.best_match(loc=[float(longitude), float(latitude)], max_distance=distanceInKm/111, nbr=200).to_json()
+
 @api_v1.route('/produits/<id>', methods=['GET'])
 @api_legacy.route('/produits/<id>', methods=['GET'])
 def get_produit(id):
