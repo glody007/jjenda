@@ -24,7 +24,7 @@ $axios.interceptors.response.use(function (response) {
 export default {
 
   fetchArticles () {
-    return $axios.get(`produits`)
+    return $axios.get(`best_match_produits`)
       .then(response => response.data)
   },
   fetchArticle (id) {
