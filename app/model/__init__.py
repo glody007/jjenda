@@ -54,7 +54,10 @@ class Plan(Document):
         return plan
 
     def is_ended(self):
-        if datetime.datetime.now() > self.timestamp_end:
+        now = datetime.datetime.now()
+        end = self.timestamp_end
+        if (datetime.date(now.year, now.month, now.day) >
+            datetime.date(end.year, end.month, end.day)):
             return True
         else:
             return False
