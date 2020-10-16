@@ -12,6 +12,7 @@
     <v-btn
       color="#25D366"
       text
+      v-on:click="onClick"
       :href="whatsapp"
       v-if="userLoaded"
     >
@@ -54,10 +55,33 @@ export default {
         .then(responseData => {
           this.vendeur = responseData
           this.userLoaded = true
+          this.analyticsArticleViewed()
         })
         .catch(error => {
           this.error = error
         })
+    },
+
+    analyticsArticleViewed () {
+      window.analytics.track('Article Viewed', {
+        id: this.article._id.$oid,
+        vendeurId: this.article.vendeur_id,
+        vendeurPhoneNumber: this.vendeur.phone_number,
+        categorie: this.article.categorie,
+        description: this.article.description,
+        prix: `${this.article.prix}$`
+      })
+    },
+
+    onClick () {
+      window.analytics.track('Vendeur contacted', {
+        id: this.article._id.$oid,
+        vendeurId: this.article.vendeur_id,
+        vendeurPhoneNumber: this.vendeur.phone_number,
+        categorie: this.article.categorie,
+        description: this.article.description,
+        prix: `${this.article.prix}$`
+      })
     }
   }
 }

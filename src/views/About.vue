@@ -19,6 +19,9 @@ export default {
   },
   methods: {
 
+  },
+  mounted () {
+    window.analytics.page('About')
   }
 }
 

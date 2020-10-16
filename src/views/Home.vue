@@ -20,6 +20,10 @@ export default {
 
   components: {
     ArticlesEnVente, Article
+  },
+
+  mounted () {
+    window.analytics.page('Home')
   }
 }
 </script>

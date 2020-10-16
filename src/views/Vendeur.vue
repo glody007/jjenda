@@ -13,6 +13,7 @@
       <v-btn
         fab
         dark
+        v-on:click="onClick"
         :href="whatsapp"
         color="#25D366"
         class="ml-3"
@@ -59,10 +60,28 @@ export default {
       $backend.fetchVendeur(this.$route.params.id)
         .then(responseData => {
           this.vendeur = responseData
+          this.analyticsVendeurViewed()
         })
         .catch(error => {
           this.error = error
         })
+    },
+
+    analyticsVendeurViewed () {
+      window.analytics.track('Vendeur Viewed', {
+        vendeurId: this.vendeur.unique_id,
+        nom: this.vendeur.nom,
+        vendeurPhoneNumber: this.vendeur.phone_number
+      })
+    },
+
+    onClick () {
+      window.analytics.track('Vendeur contacted', {
+        vendeurId: this.vendeur.unique_id,
+        nom: this.vendeur.nom,
+        method: 'whatsapp',
+        vendeurPhoneNumber: this.vendeur.phone_number
+      })
     }
   }
 }
