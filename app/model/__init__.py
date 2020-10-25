@@ -22,11 +22,11 @@ class CustomDateTimeField(DateTimeField):
 
 class PlanType:
     GRATUIT = {"NOM" : "GRATUIT", "NBR_ARTICLES" : 4,
-               "PRICE" : "0$", "ADVANTAGE" : "Gratuit<br/> 0$"}
+               "PRICE" : "0$", "ADVANTAGE" : "4 articles gratuits par mois"}
     STANDARD = {"NOM" : "STANDARD", "NBR_ARTICLES" : 30,
-                "PRICE" : "5$", "ADVANTAGE" : "Standard<br/> 5$"}
+                "PRICE" : "5$", "ADVANTAGE" : "30 articles par mois"}
     GOLD = {"NOM" : "GOLD", "NBR_ARTICLES" : 100,
-            "PRICE" : "10$", "ADVANTAGE" : "Gold<br/> 10$"}
+            "PRICE" : "10$", "ADVANTAGE" : "100 articles par mois"}
 
     @staticmethod
     def all():
