@@ -33,7 +33,7 @@ from imagekitio import ImageKit
 from google.oauth2 import id_token
 from google.auth.transport import requests
 
-from ..model import User, Produit, UserType, PlanType
+from ..model import User, Produit, UserType, PlanType, Plan
 from .. import client
 
 
@@ -262,6 +262,23 @@ def get_user_produits(id):
     if user == None:
         abort(404)
     return user.articles_to_json()
+
+@api_v1.route('/users/<id>/plan', methods=['GET'])
+@api_legacy.route('/users/<id>/plan', methods=['GET'])
+def get_user_plan(id):
+    user = User.objects(unique_id=id).first()
+    if user == None:
+        abort(404)
+    return user.plan.to_json()
+
+@api_v1.route('/users/<id>/plan', methods=['POST'])
+@api_legacy.route('/users/<id>/plan', methods=['POST'])
+def add_plan(id):
+    user = User.objects(unique_id=id).first()
+    if user == None:
+        abort(404)
+    user.set_plan(Plan.create(plan_type=PlanType.STANDARD))
+    return user.plan.to_json()
 
 def is_product_or_404(request):
     if (not request.json or

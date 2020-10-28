@@ -22,7 +22,10 @@ $axios.interceptors.response.use(function (response) {
 })
 
 export default {
-
+  fetchUsers () {
+    return $axios.get(`users`)
+      .then(response => response.data)
+  },
   fetchArticles () {
     return $axios.get(`best_match_produits`)
       .then(response => response.data)
@@ -33,6 +36,14 @@ export default {
   },
   fetchVendeurArticles (id) {
     return $axios.get(`users/${id}/produits`)
+      .then(response => response.data)
+  },
+  fetchVendeurPlan (id) {
+    return $axios.get(`users/${id}/plan`)
+      .then(response => response.data)
+  },
+  vendeurAddPlan (id) {
+    return $axios.post(`users/${id}/plan`)
       .then(response => response.data)
   },
   fetchVendeur (id) {
