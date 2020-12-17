@@ -4,7 +4,7 @@ from bson.json_util import dumps
 import os, datetime, calendar
 
 if os.getenv("FLASK_ENV") == "development":
-    db = connect('djenda-test-database')
+    db = connect('djenda-test-database', host='db')
 else:
     db = connect(host=os.getenv("DB_URI"))
 

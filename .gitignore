@@ -3,7 +3,8 @@
 .mypy_cache\
 .env
 
-/dist
+dist/
+__pycache__
 .coverage
 .pytest_cache/
 htmlcov/
