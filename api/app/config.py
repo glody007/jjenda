@@ -31,12 +31,4 @@ class Config(object):
     TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
     TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 
-    APP_DIR = os.path.dirname(__file__)
-    ROOT_DIR = os.path.dirname(APP_DIR)
-    DIST_DIR = os.path.join(ROOT_DIR, 'dist')
-
-    if not os.path.exists(DIST_DIR):
-        raise Exception(
-            'DIST_DIR not found: {}'.format(DIST_DIR))
-
 app.config.from_object('app.config.Config')

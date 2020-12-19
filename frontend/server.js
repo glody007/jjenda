@@ -10,8 +10,12 @@ const port = process.env.UI_SERVER_PORT || 8000;
 
 const apiProxyTarget = process.env.API_PROXY_TARGET;
 if (apiProxyTarget) {
-  app.use('/', createProxyMiddleware({ target: apiProxyTarget }));
+  app.use('/api', createProxyMiddleware({ target: apiProxyTarget }));
 }
+
+app.get('*', function(req, res) {
+  res.sendFile(__dirname + '/dist/index.html');
+});
 
 app.listen(port, () => {
   console.log(`UI started on port ${port}`);

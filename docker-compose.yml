@@ -1,14 +1,24 @@
 version: "3.3"
 services:
-  web:
-    build: backend
+  frontend:
+    build: frontend
+    ports:
+      - "8080:8080"
+    links:
+     - api
+    depends_on:
+     - api
+    volumes: ['./frontend:/frontend']
+  api:
+    build: api
     ports:
       - "5000:5000"
     links:
      - db
     depends_on:
      - db
-    volumes: ['./backend:/app']
+    volumes: ['./api:/api']
+
   db:
     image: mongo
     ports:
