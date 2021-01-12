@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.static('dist'));
 
-const port = process.env.UI_SERVER_PORT || 8000;
+const port = process.env.PORT || process.env.UI_SERVER_PORT || 8000;
 
 const apiProxyTarget = process.env.API_PROXY_TARGET;
 if (apiProxyTarget) {
