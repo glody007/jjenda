@@ -2,6 +2,7 @@ FROM node:12-alpine
 COPY . /frontend
 WORKDIR /frontend
 RUN npm install yarn && \
+    npm install @vue/cli-service -g && \
     yarn run build && \
     yarn cache clean
 CMD [ "yarn", "start" ]
