@@ -1,7 +1,8 @@
 import os
 from app import app
 
-app.run(host='0.0.0.0',port=5000)
+port = 5000
+app.run(debug = True, host = '0.0.0.0', port = port)
 
 # To Run:
 # python run.py

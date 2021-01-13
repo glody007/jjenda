@@ -3,6 +3,7 @@ COPY . /frontend
 WORKDIR /frontend
 RUN npm install yarn && \
     yarn add global @vue/cli && \
+    yarn install && \
     yarn run build && \
     yarn cache clean
 CMD [ "yarn", "start" ]
