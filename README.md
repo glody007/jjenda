@@ -82,9 +82,16 @@ Here are the commands we need to run to get things setup on the Heroku side:
 	```
 	$ heroku apps:create jjenda
 	$ heroku git:remote --app jjenda
-	$ heroku stack:set container
-	$ heroku config:set FLASK_ENV=production
-	$ heroku config:set FLASK_SECRET=SuperSecretKey
+	$ git remote rename heroku web-jjenda
+	$ heroku stack:set container -a jjenda
 
-	$ git push heroku
+	$ git push web-jjenda `git subtree split --prefix frontend HEAD`:master
+
+	$ heroku apps:create apijjenda
+	$ heroku git:remote --app apijjenda
+	$ git remote rename heroku api-jjenda
+	$ heroku stack:set container -a apijjenda
+
+	$ git push api-jjenda `git subtree split --prefix api HEAD`:master
+
 	```
