@@ -26,8 +26,12 @@ export default {
     return $axios.get(`users`)
       .then(response => response.data)
   },
-  fetchArticles () {
-    return $axios.get(`best_match_produits`)
+  fetchArticles (pageNb) {
+    return $axios.get(`best_match_produits`, {
+      params: {
+        page_nb: pageNb
+      }
+    })
       .then(response => response.data)
   },
   fetchArticle (id) {

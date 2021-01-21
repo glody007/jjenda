@@ -1,38 +1,59 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      dark
-      app
-      clipped
-    >
-      <v-list dense>
-        <v-list-item link to="/">
-          <v-list-item-action>
-            <v-icon>mdi-home</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Acceuil</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link to="/about">
-          <v-list-item-action>
-            <v-icon>mdi-information</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>À propos</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
     <v-app-bar
       app
       dark
       clipped-left
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Jjenda</v-toolbar-title>
+      <v-container class="py-0 fill-height">
+        <v-avatar
+          class="mr-2"
+          size="40"
+        >
+        <img
+          src="https://ik.imagekit.io/djenda/web_hi_res_512_O-MaEysDV.png"
+          alt="John"
+        >
+        </v-avatar>
+
+        <v-toolbar-title>Jjenda</v-toolbar-title>
+
+        <v-spacer></v-spacer>
+
+        <v-responsive max-width="500" class="mt-1">
+          <v-text-field
+            flat
+            clearable
+            hide-details
+            solo-inverted
+            label="Rechercher des articles"
+            prepend-inner-icon="mdi-magnify"
+          >
+            <template v-slot:append-outer>
+              <v-btn
+                large
+                color="pink"
+                class="mb-0"
+                style="top: -10px"
+                offset-y
+              >
+                <v-icon>mdi-magnify</v-icon>
+              </v-btn>
+            </template>
+          </v-text-field>
+        </v-responsive>
+
+        <v-spacer></v-spacer>
+
+        <v-btn
+          v-for="link in links"
+          :key="link"
+          text
+        >
+          {{ link }}
+        </v-btn>
+
+      </v-container>
     </v-app-bar>
 
     <v-main>
@@ -47,7 +68,6 @@
     </v-main>
 
     <v-footer
-     fixed
      dark
     >
       <v-container>
@@ -98,7 +118,8 @@ export default {
   data: () => ({
     drawer: false,
     snackbar: true,
-    link: 'https://play.google.com/store/apps/details?id=com.jjenda'
+    link: 'https://play.google.com/store/apps/details?id=com.jjenda',
+    links: ['About']
   }),
   created () {
     this.$vuetify.theme.dark = false

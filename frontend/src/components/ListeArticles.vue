@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <div v-infinite-scroll="loadMore" infinite-scroll-distance="10">
       <v-row justify="center">
         <v-col
           v-for="(article, i) in articles"
@@ -10,6 +11,7 @@
           <Article :article="article"/>
         </v-col>
       </v-row>
+    </div>
   </v-container>
 </template>
 
@@ -29,7 +31,9 @@ export default {
   }),
 
   methods: {
-
+    loadMore: function () {
+      this.$emit('loadMore')
+    }
   }
 }
 </script>

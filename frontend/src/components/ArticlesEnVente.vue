@@ -1,7 +1,7 @@
 <template>
   <v-container>
       <v-row justify="center">
-        <ListeArticles :articles="articles"/>
+        <ListeArticles :articles="articles" v-on:loadMore="loadMore()"/>
       </v-row>
   </v-container>
 </template>
@@ -19,22 +19,29 @@ export default {
 
   data: () => ({
     articles: [],
+    page: 1,
+    nbreArticlesPerPage: 10,
     error: ''
   }),
 
   mounted () {
-    this.fetchArticles()
+
   },
 
   methods: {
     fetchArticles () {
-      $backend.fetchArticles()
+      $backend.fetchArticles(this.page)
         .then(responseData => {
-          this.articles = responseData
+          this.articles= this.articles.concat(responseData)
+          this.page++
         })
         .catch(error => {
           this.error = error
         })
+    },
+    loadMore () {
+      console.log(`Page ${this.page}`)
+      this.fetchArticles()
     }
   }
 

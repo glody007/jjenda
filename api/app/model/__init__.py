@@ -109,10 +109,27 @@ class Produit(Document):
                        created_at=str(data_time),
                        location=[float(dict['longitude']), float(dict['latitude'])])
 
+    def to_dict(self):
+        return {'id': self.id,
+                'prix': self.prix,
+                'vendeur_id': self.vendeur_id,
+                'categorie': self.categorie,
+                'description': self.description,
+                'url_photo': self.url_photo,
+                'url_thumbnail_photo': self.url_thumbnail_photo,
+                'timestamp': self.timestamp,
+                'created_at': self.created_at,
+                'location': self.location}
+
+    def to_algolia_record(self):
+        produit = self.to_dict()
+        produit['objectID'] = str(produit['id'])
+        return produit
 
     @queryset_manager
-    def order_by_created_desc(doc_cls, queryset):
-        return queryset.order_by('-timestamp')
+    def order_by_created_desc(doc_cls, queryset, page_nb = 1, items_per_page = 10):
+        offset = (page_nb - 1) * items_per_page
+        return queryset.order_by('-timestamp').skip( offset ).limit( items_per_page )
 
     @staticmethod
     def near_order_by_created_desc(loc=[0, 0], max_distance=1000):
@@ -128,8 +145,10 @@ class Produit(Document):
         return Produit.objects.skip( offset ).limit( items_per_page )
 
     @staticmethod
-    def best_match(loc=[0, 0], max_distance=1000, nbr=100):
-        return Produit.near_order_by_distance(loc=loc, max_distance=max_distance).limit(nbr).order_by('-timestamp')
+    def best_match(loc=[0, 0], max_distance=1000, nbr=200, page_nb = 1, items_per_page = 10):
+        offset = (page_nb - 1) * nbr
+        return Produit.near_order_by_distance(loc=loc, max_distance=max_distance)\
+                    .limit(nbr).order_by('-timestamp').skip(offset).limit(items_per_page)
 
 class User(Document, UserMixin):
     unique_id = StringField(required=True)
