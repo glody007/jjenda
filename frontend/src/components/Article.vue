@@ -48,7 +48,8 @@ export default {
 
   computed: {
     linkDetails () {
-      return '/article/' + this.article._id.$oid
+      if (this.article.id) return `/article/${this.article.id}`
+      return `/article/${this.article._id.$oid}`
     },
     prix () {
       return `${this.article.prix}$`

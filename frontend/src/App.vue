@@ -1,71 +1,7 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar
-      app
-      dark
-      clipped-left
-    >
-      <v-container class="py-0 fill-height">
-        <v-avatar
-          class="mr-2"
-          size="40"
-        >
-        <img
-          src="https://ik.imagekit.io/djenda/web_hi_res_512_O-MaEysDV.png"
-          alt="John"
-        >
-        </v-avatar>
 
-        <v-toolbar-title>Jjenda</v-toolbar-title>
-
-        <v-spacer></v-spacer>
-
-        <v-responsive max-width="500" class="mt-1">
-          <v-text-field
-            flat
-            clearable
-            hide-details
-            solo-inverted
-            label="Rechercher des articles"
-            prepend-inner-icon="mdi-magnify"
-          >
-            <template v-slot:append-outer>
-              <v-btn
-                large
-                color="pink"
-                class="mb-0"
-                style="top: -10px"
-                offset-y
-              >
-                <v-icon>mdi-magnify</v-icon>
-              </v-btn>
-            </template>
-          </v-text-field>
-        </v-responsive>
-
-        <v-spacer></v-spacer>
-
-        <v-btn
-          v-for="link in links"
-          :key="link"
-          text
-        >
-          {{ link }}
-        </v-btn>
-
-      </v-container>
-    </v-app-bar>
-
-    <v-main>
-      <v-container
-        class="fill-height"
-        fluid
-      >
-        <v-row align="end" justify="center">
-          <router-view :key="$route.fullPath"/>
-        </v-row>
-      </v-container>
-    </v-main>
+    <router-view/>
 
     <v-footer
      dark
@@ -110,8 +46,13 @@
 </template>
 
 <script>
+import Main from "./views/Main.vue"
+
 export default {
   name: 'App',
+  components: {
+    Main
+  },
   props: {
     source: String
   },

@@ -2,7 +2,7 @@
   <v-container fill-height fluid>
     <v-row class="text-center" justify="center">
       <h1 class="text-h4 text-sm-h2 mb-5 mb-sm-10">
-        À propos de Jjenda
+        Research
       </h1>
     </v-row>
   </v-container>
@@ -11,7 +11,7 @@
 <script>
 
 export default {
-  name: 'about',
+  name: 'research',
   data () {
     return {
 
@@ -21,7 +21,7 @@ export default {
 
   },
   mounted () {
-    window.analytics.page('About')
+    window.analytics.page('Research')
   }
 }
 

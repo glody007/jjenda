@@ -6,10 +6,12 @@ import infiniteScroll from 'vue-infinite-scroll'
 
 import './filters'
 import vuetify from './plugins/vuetify'
+import InstantSearch from 'vue-instantsearch'
 
 Vue.config.productionTip = false
 
 Vue.use(infiniteScroll)
+Vue.use(InstantSearch)
 
 new Vue({
   router,

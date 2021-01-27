@@ -32,7 +32,7 @@ export default {
     fetchArticles () {
       $backend.fetchArticles(this.page)
         .then(responseData => {
-          this.articles= this.articles.concat(responseData)
+          this.articles = this.articles.concat(responseData)
           this.page++
         })
         .catch(error => {
@@ -40,7 +40,6 @@ export default {
         })
     },
     loadMore () {
-      console.log(`Page ${this.page}`)
       this.fetchArticles()
     }
   }
