@@ -38,6 +38,18 @@ export default {
     return $axios.get(`produits/${id}`)
       .then(response => response.data)
   },
+  fetchArticlesRaw () {
+    return $axios.get(`/raw/produits`)
+      .then(response => response.data)
+  },
+  fetchArticleRaw (id) {
+    return $axios.get(`/raw/produits/${id}`)
+      .then(response => response.data)
+  },
+  postArticleRaw (articleRaw) {
+    return $axios.post(`/raw/produits`, articleRaw)
+      .then(response => response.data)
+  },
   fetchVendeurArticles (id) {
     return $axios.get(`users/${id}/produits`)
       .then(response => response.data)

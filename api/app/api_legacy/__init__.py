@@ -33,7 +33,7 @@ from imagekitio import ImageKit
 from google.oauth2 import id_token
 from google.auth.transport import requests
 
-from ..model import User, Produit, UserType, PlanType, Plan
+from ..model import *
 from .. import client
 
 
@@ -338,7 +338,6 @@ def best_match_produits():
 @api_v1.route('/produits/<id>', methods=['GET'])
 @api_legacy.route('/produits/<id>', methods=['GET'])
 def get_produit(id):
-    print(id)
     produit = Produit.objects(id=id).first()
     if produit == None:
         abort(404)
@@ -368,3 +367,44 @@ def update_produit(id):
     produit.save()
 
     return jsonify({'produit': produit.to_json()}), 201
+
+@api_v1.route('/raw/produits', methods=['GET'])
+@api_legacy.route('/raw/produits', methods=['GET'])
+def produits_raw():
+    return ProduitBrut.objects().to_json()
+
+@api_v1.route('/raw/produits/<id>', methods=['GET'])
+@api_legacy.route('/raw/produits/<id>', methods=['GET'])
+def get_produit_raw(id):
+    produit = ProduitBrut.objects(id=id).first()
+    if produit == None:
+        abort(404)
+    return produit.to_json()
+
+@api_v1.route('/raw/produits/<id>', methods=['DELETE'])
+@api_legacy.route('/raw/produits/<id>', methods=['DELETE'])
+def delete_produit_raw(id):
+    produit = ProduitBrut.objects(id=id).first()
+    if produit == None:
+        abort(404)
+    produit.delete()
+    return jsonify({'resultat' : True})
+
+def is_raw_product_or_404(request):
+    if (not request.json or
+        not request.json['prix'] or
+        not request.json['categorie'] or
+        not request.json['description'] or
+        not request.json['url_photo'] or
+        not request.json['saler_name'] or
+        not request.json['saler_number'] or
+        not request.json['location']):
+        abort(400)
+
+@api_v1.route('/raw/produits', methods=['POST'])
+@api_legacy.route('/raw/produits', methods=['POST'])
+def add_produit_raw():
+    is_raw_product_or_404(request)
+    print(request.json)
+    ProduitBrut.add(request.json)
+    return jsonify({'resultat' : True})

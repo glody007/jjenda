@@ -37,11 +37,6 @@ export default new Router({
           path: '/vendeur/:id',
           name: 'vendeur',
           component: Vendeur
-        },
-        {
-          path: '/dashboard',
-          name: 'dashboard',
-          component: Dashboard
         }
       ]
     },
@@ -49,6 +44,18 @@ export default new Router({
       path: '/research',
       name: 'research',
       component: Research
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard,
+      children: [
+        {
+          path: '/a',
+          name: 'a',
+          component: Home
+        }
+      ]
     }
   ]
 })
