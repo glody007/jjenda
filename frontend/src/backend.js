@@ -50,6 +50,10 @@ export default {
     return $axios.post(`/raw/produits`, articleRaw)
       .then(response => response.data)
   },
+  postArticlesRawFromFile (formData) {
+    return $axios.post(`/raw/produits`, formData)
+      .then(response => response.data)
+  },
   fetchVendeurArticles (id) {
     return $axios.get(`users/${id}/produits`)
       .then(response => response.data)

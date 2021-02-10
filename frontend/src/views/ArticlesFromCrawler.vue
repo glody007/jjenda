@@ -11,15 +11,33 @@
         <v-btn
           color="primary"
           rounded
-          @click="dialog = true"
+          @click="dialogArticle = true"
         >
           <v-icon>mdi-plus</v-icon>
-          Ajouter
+          Single
         </v-btn>
+
+        <v-btn
+          color="error"
+          rounded
+          class="ml-3"
+          @click="dialogFile = true"
+        >
+          <v-icon>mdi-plus</v-icon>
+          Multiple
+        </v-btn>
+
       </v-app-bar>
     </v-row>
     <v-row justify="center">
-      <DialogAjouterArticleRaw :dialog="dialog" v-on:closeDialog="dialog = false"/>
+      <DialogAjouterArticleRaw
+        :dialog="dialogArticle"
+        v-on:closeDialog="dialogArticle = false"
+      />
+      <DialogAjouterArticlesRawFromFile
+        :dialog="dialogFile"
+        v-on:closeDialog="dialogFile = false"
+      />
       <ListeProductsFromCrawler :articles="articles" v-on:loadMore="loadMore()"/>
     </v-row>
   </v-container>
@@ -29,11 +47,14 @@
 import $backend from '../backend'
 import ListeProductsFromCrawler from '../components/ListeProductsFromCrawler'
 import DialogAjouterArticleRaw from '../components/dialog/DialogAjouterArticleRaw'
+import DialogAjouterArticlesRawFromFile from '../components/dialog/DialogAjouterArticlesRawFromFile'
 
 export default {
   name: 'ProductFromCrawler',
   components: {
-    ListeProductsFromCrawler, DialogAjouterArticleRaw
+    ListeProductsFromCrawler,
+    DialogAjouterArticleRaw,
+    DialogAjouterArticlesRawFromFile
   },
   data () {
     return {
@@ -42,7 +63,8 @@ export default {
       page: 1,
       nbreArticlesPerPage: 10,
       error: '',
-      dialog: false
+      dialogArticle: false,
+      dialogFile: false
     }
   },
   methods: {

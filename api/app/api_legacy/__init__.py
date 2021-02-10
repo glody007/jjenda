@@ -390,7 +390,7 @@ def delete_produit_raw(id):
     produit.delete()
     return jsonify({'resultat' : True})
 
-def is_raw_product_or_404(request):
+def is_raw_product_or_400(request):
     if (not request.json or
         not request.json['prix'] or
         not request.json['categorie'] or
@@ -404,7 +404,12 @@ def is_raw_product_or_404(request):
 @api_v1.route('/raw/produits', methods=['POST'])
 @api_legacy.route('/raw/produits', methods=['POST'])
 def add_produit_raw():
-    is_raw_product_or_404(request)
-    print(request.json)
+    if 'file' in request.files:
+        file = request.files['file']
+        if file.filename == '':
+            abort(400)
+        ProduitBrut.fromFile(file)
+        return jsonify({'resultat' : True})
+    is_raw_product_or_400(request)
     ProduitBrut.add(request.json)
     return jsonify({'resultat' : True})

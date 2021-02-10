@@ -13,26 +13,9 @@
           tile
           hover
         >
-          <v-card-title class="ma-0">
-            <div>{{article.categorie}}</div>
-          </v-card-title>
+          <ArticleOverview :article="article"/>
 
-          <v-card-text class="text--primary">
-
-            <div>{{article.description}}</div>
-
-            <div>{{elapsedTime}}</div>
-
-            <v-badge
-              class="mt-5"
-              color="black"
-              inline
-              :content="prix"
-            >
-            </v-badge>
-          </v-card-text>
-
-          <VendeurContact class="mt-6" :article= "article"/>
+          <VendeurContact class="mt-6" :article="article"/>
         </v-card>
       </v-col>
     </v-row>
@@ -42,13 +25,15 @@
 <script>
 import ArticleImage from '../components/ArticleImage'
 import VendeurContact from '../components/VendeurContact'
-import moment from 'moment'
+import ArticleOverview from '../components/ArticleOverview'
 
 export default {
   name: 'Article',
 
   components: {
-    ArticleImage, VendeurContact
+    ArticleImage,
+    ArticleOverview,
+    VendeurContact
   },
 
   data: () => ({

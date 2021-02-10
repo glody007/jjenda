@@ -7,7 +7,7 @@
     >
       <v-card>
         <v-card-title>
-          <span class="headline">Product raw</span>
+          <span class="headline">Add raw product</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -90,7 +90,7 @@
           <v-btn
             color="blue darken-1"
             text
-            @click="$emit('closeDialog')"
+            @click="closeDialog"
           >
             Close
           </v-btn>
@@ -129,11 +129,14 @@ export default {
     postArticleRaw () {
       $backend.postArticleRaw(this.data)
         .then(responseData => {
-          console.log(responseData)
+          this.closeDialog()
         })
         .catch(error => {
           this.error = error
         })
+    },
+    closeDialog () {
+      this.$emit('closeDialog')
     }
   }
 }

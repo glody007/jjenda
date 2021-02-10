@@ -1,28 +1,33 @@
 <template>
-  <v-card
-    class="mx-auto"
-    max-width="400"
-    outlined
-    tile
-    hover
-    :to="linkDetails"
-  >
-    <ArticleImage :article="article" :height="200"/>
+  <div>
+    <v-card-title class="ma-0">
+      {{article.categorie}}
+    </v-card-title>
 
-    <ArticleOverview :article="article"/>
-  </v-card>
+    <v-card-text class="text--primary">
+      <div>{{article.description}}</div>
+
+      <div>{{elapsedTime}}</div>
+
+      <v-badge
+        class="mt-5"
+        color="black"
+        inline
+        :content="prix"
+      >
+      </v-badge>
+    </v-card-text>
+  </div>
 </template>
 
 <script>
-import ArticleImage from '../components/ArticleImage'
 import moment from 'moment'
-import ArticleOverview from '../components/ArticleOverview'
 
 export default {
-  name: 'Article',
+  name: 'ArticleOverview',
 
   components: {
-    ArticleImage, ArticleOverview
+
   },
 
   data: () => ({

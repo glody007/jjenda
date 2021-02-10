@@ -120,6 +120,13 @@ class ProduitBrut(Document):
         for dict in list:
             ProduitBrut.add(dict)
 
+    @staticmethod
+    def fromFile(file):
+        import json
+
+        data = json.load(file)
+        produitsRaw = ProduitBrut.from_list(data['products_raw'])
+
 class Produit(Document):
     categorie = StringField(required=True, max_length=50)
     vendeur_id = StringField(required=True)
